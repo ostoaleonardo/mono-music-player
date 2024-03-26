@@ -1,4 +1,5 @@
 import { StyleSheet, View } from 'react-native'
+import { COLORS } from '@/constants'
 
 export default function Albums() {
     return (
@@ -10,5 +11,6 @@ export default function Albums() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: COLORS.background,
     },
 })
