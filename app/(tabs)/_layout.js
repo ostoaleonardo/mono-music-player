@@ -1,5 +1,6 @@
-import { COLORS, FONTS } from '@/constants'
 import { Tabs } from 'expo-router'
+import { TabBar } from '@/components'
+import { COLORS, FONTS } from '@/constants'
 
 export default function TabsLayout() {
     return (
@@ -8,7 +9,6 @@ export default function TabsLayout() {
                 headerTitleAlign: 'center',
                 headerShadowVisible: false,
                 headerTintColor: COLORS.text,
-                tabBarActiveTintColor: COLORS.primary,
 
                 headerStyle: {
                     backgroundColor: COLORS.background,
@@ -20,15 +20,9 @@ export default function TabsLayout() {
                     fontFamily: FONTS.mono,
                     textTransform: 'uppercase',
                 },
-
-                tabBarStyle: {
-                    backgroundColor: COLORS.background,
-                },
-
-                tabBarLabelStyle: {
-                    fontFamily: FONTS.mono,
-                },
             }}
+
+            tabBar={() => <TabBar />}
         >
             <Tabs.Screen
                 name='index'
@@ -48,6 +42,6 @@ export default function TabsLayout() {
                     title: 'Albums',
                 }}
             />
-        </Tabs>
+        </Tabs >
     )
 }
