@@ -10,7 +10,7 @@ export default function Tracks() {
 
     useEffect(() => {
         const fetchTracks = async () => {
-            if (permissionResponse.status !== 'granted') {
+            if (!permissionResponse || permissionResponse.status !== 'granted') {
                 await requestPermission()
             }
 
