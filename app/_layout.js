@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { useFonts } from 'expo-font'
 import { Stack } from 'expo-router/stack'
 import * as SplashScreen from 'expo-splash-screen'
+import { Providers } from './providers'
 
 export default function AppLayout() {
     const [isReady, setIsReady] = useState(false)
@@ -29,13 +30,15 @@ export default function AppLayout() {
     }
 
     return (
-        <Stack onLayout={onLayoutRootView}>
-            <Stack.Screen
-                name='(tabs)'
-                options={{
-                    headerShown: false,
-                }}
-            />
-        </Stack>
+        <Providers>
+            <Stack onLayout={onLayoutRootView}>
+                <Stack.Screen
+                    name='(tabs)'
+                    options={{
+                        headerShown: false,
+                    }}
+                />
+            </Stack>
+        </Providers>
     );
 }
