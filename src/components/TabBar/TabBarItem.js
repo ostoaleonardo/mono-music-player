@@ -1,5 +1,6 @@
-import { Pressable, StyleSheet, Text } from 'react-native'
-import { COLORS, FONTS } from '@/constants'
+import { Pressable, StyleSheet } from 'react-native'
+import { Typography } from '../Text'
+import { COLORS } from '@/constants'
 
 export function TabBarItem({ title, onPress, isActive }) {
     return (
@@ -7,12 +8,14 @@ export function TabBarItem({ title, onPress, isActive }) {
             onPress={onPress}
             style={styles.container}
         >
-            <Text style={[
-                styles.label,
-                isActive && styles.labelActive,
-            ]}>
+            <Typography
+                uppercase
+                bold={isActive}
+                variant='caption'
+                color={isActive ? COLORS.primary : COLORS.text}
+            >
                 {title}
-            </Text>
+            </Typography>
         </Pressable>
     )
 }
@@ -23,16 +26,5 @@ const styles = StyleSheet.create({
         height: '100%',
         alignItems: 'center',
         justifyContent: 'center',
-    },
-    label: {
-        fontSize: 12,
-        color: COLORS.text,
-        textAlign: 'center',
-        fontFamily: FONTS.mono,
-        textTransform: 'uppercase',
-    },
-    labelActive: {
-        fontWeight: 'bold',
-        color: COLORS.primary,
     },
 })

@@ -28,16 +28,14 @@ export default function Tracks() {
         <View style={styles.container}>
             <FlatList
                 data={tracks}
-                numColumns={2}
                 overScrollMode='never'
                 keyExtractor={item => item.id}
-                columnWrapperStyle={{
-                    gap: 16,
-                }}
                 contentContainerStyle={{
                     padding: 16,
-                    gap: 16,
                 }}
+                ItemSeparatorComponent={() => (
+                    <View style={styles.separator} />
+                )}
                 renderItem={({ item }) => (
                     <TrackCard
                         track={item}
@@ -52,5 +50,10 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: COLORS.background,
+    },
+    separator: {
+        height: 1,
+        marginVertical: 8,
+        backgroundColor: COLORS.text5,
     },
 })

@@ -1,30 +1,47 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
-import { COLORS, FONTS } from '@/constants'
+import { Image, Pressable, StyleSheet, View } from 'react-native'
+import { Typography } from '../Text'
+import { useAudioController, usePlayingNow } from '@/hooks'
+import { COLORS } from '@/constants'
 
 export function MusicControllerBar() {
+    const { playingNow, isPlaying, setIsPlaying } = usePlayingNow()
+    const { playSound, pauseSound } = useAudioController()
+    const { title, artist, album, uri } = playingNow
+
+    const handlePlayPause = () => {
+        if (isPlaying) {
+            pauseSound()
+        } else {
+            playSound(uri)
+        }
+        setIsPlaying(!isPlaying)
+    }
+
     return (
         <View style={styles.container}>
-            {/* <Image
-                source={''}
+            <Image
+                source={{ uri: album }}
                 style={styles.album}
-            /> */}
+            />
             <View style={styles.info}>
-                <Text
+                <Typography numberOfLines={1}>
+                    {title}
+                </Typography>
+                <Typography
+                    opacity={0.5}
                     numberOfLines={1}
-                    style={styles.title}
                 >
-                    Track Title
-                </Text>
-                <Text
-                    numberOfLines={1}
-                    style={styles.artist}
-                >
-                    Artist Name
-                </Text>
+                    {artist}
+                </Typography>
             </View>
-            <Text style={styles.artist}>
-                v
-            </Text>
+            <Pressable
+                style={styles.playButton}
+                onPress={handlePlayPause}
+            >
+                <Typography>
+                    {isPlaying ? '||' : '▶'}
+                </Typography>
+            </Pressable>
         </View>
     )
 }
@@ -45,19 +62,14 @@ const styles = StyleSheet.create({
     },
     info: {
         flex: 1,
-        flexDirection: 'column',
-        alignItems: 'flex-start',
-        justifyContent: 'center',
         marginHorizontal: 16,
+        justifyContent: 'center',
     },
-    title: {
-        fontSize: 14,
-        color: COLORS.text,
-        fontFamily: FONTS.mono,
-    },
-    artist: {
-        fontSize: 12,
-        color: COLORS.text,
-        fontFamily: FONTS.mono,
+    playButton: {
+        width: 48,
+        height: 48,
+        borderRadius: 16,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 })
