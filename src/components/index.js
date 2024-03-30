@@ -6,3 +6,6 @@ export { TabBar } from './TabBar'
 
 // Typography
 export { Typography } from './Text'
+
+// Button
+export { IconButton } from './Button'
