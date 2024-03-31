@@ -32,9 +32,14 @@ export function useAudioController() {
         setSound(null)
     }
 
+    const replaySound = async () => {
+        await sound.replayAsync()
+    }
+
     return {
         playSound,
         pauseSound,
         stopSound,
+        replaySound,
     }
 }

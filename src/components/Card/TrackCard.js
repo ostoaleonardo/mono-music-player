@@ -5,18 +5,19 @@ import { useAudioController, usePlayingNow } from '@/hooks'
 import { COLORS } from '@/constants'
 
 export function TrackCard({ track }) {
-    const { isPlaying, setIsPlaying, setPlayingNow } = usePlayingNow()
-    const { playSound, pauseSound } = useAudioController()
+    const { setIsPlaying, playingNow, setPlayingNow } = usePlayingNow()
+    const { playSound, replaySound } = useAudioController()
     const { id, filename, artist, uri } = track
 
     const handlePlay = async () => {
-        if (isPlaying) {
-            await pauseSound()
+        if (uri === playingNow.uri) {
+            await replaySound()
         } else {
             await playSound(uri)
         }
+
+        setIsPlaying(true)
         onSave()
-        setIsPlaying(!isPlaying)
     }
 
     const onSave = () => {

@@ -3,12 +3,23 @@ import { router } from 'expo-router'
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet'
 import { IconButton, Typography } from '@/components'
 import { Next, Pause, Play, Random, Repeat } from '@/icons'
-import { usePlayingNow } from '@/hooks'
+import { useAudioController, usePlayingNow } from '@/hooks'
 import { COLORS } from '@/constants'
 
 export default function Modal() {
-    const { isPlaying, playingNow } = usePlayingNow()
-    const { title, artist, album } = playingNow
+    const { isPlaying, setIsPlaying, playingNow } = usePlayingNow()
+    const { playSound, pauseSound } = useAudioController()
+    const { title, artist, album, uri } = playingNow
+
+    const handlePlay = async () => {
+        if (isPlaying) {
+            await pauseSound()
+        } else {
+            await playSound(uri)
+        }
+
+        setIsPlaying(!isPlaying)
+    }
 
     return (
         <BottomSheet
@@ -64,6 +75,7 @@ export default function Modal() {
                     </IconButton>
                     <IconButton
                         size='lg'
+                        onPress={handlePlay}
                     >
                         {isPlaying ? (
                             <Pause color={COLORS.text} />
