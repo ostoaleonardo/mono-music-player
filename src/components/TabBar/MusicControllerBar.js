@@ -1,4 +1,5 @@
 import { Image, Pressable, StyleSheet, View } from 'react-native'
+import { router } from 'expo-router'
 import { Typography } from '../Text'
 import { useAudioController, usePlayingNow } from '@/hooks'
 import { COLORS } from '@/constants'
@@ -18,7 +19,10 @@ export function MusicControllerBar() {
     }
 
     return (
-        <View style={styles.container}>
+        <Pressable
+            style={styles.container}
+            onPress={() => router.push('/modal')}
+        >
             <Image
                 source={{ uri: album }}
                 style={styles.album}
@@ -42,7 +46,7 @@ export function MusicControllerBar() {
                     {isPlaying ? '||' : '▶'}
                 </Typography>
             </Pressable>
-        </View>
+        </Pressable>
     )
 }
 

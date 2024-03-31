@@ -38,6 +38,13 @@ export default function AppLayout() {
                         headerShown: false,
                     }}
                 />
+                <Stack.Screen
+                    name='modal'
+                    options={{
+                        headerShown: false,
+                        presentation: 'transparentModal',
+                    }}
+                />
             </Stack>
         </Providers>
     );

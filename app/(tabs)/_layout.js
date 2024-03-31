@@ -42,6 +42,6 @@ export default function TabsLayout() {
                     title: 'Albums',
                 }}
             />
-        </Tabs >
+        </Tabs>
     )
 }
