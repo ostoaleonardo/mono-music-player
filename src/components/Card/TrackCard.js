@@ -1,5 +1,6 @@
-import { Image, Pressable, StyleSheet, View } from 'react-native'
+import { Pressable, StyleSheet, View } from 'react-native'
 import { Typography } from '../Text'
+import { AlbumArt } from './AlbumArt'
 import { useAudioController, usePlayingNow } from '@/hooks'
 import { COLORS } from '@/constants'
 
@@ -32,10 +33,7 @@ export function TrackCard({ track }) {
             onPress={handlePlay}
             style={styles.container}
         >
-            <Image
-                source={{ uri }}
-                style={styles.image}
-            />
+            <AlbumArt />
             <View style={styles.info}>
                 <Typography numberOfLines={1}>
                     {filename.split('.')[0]}

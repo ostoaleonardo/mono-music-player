@@ -1,8 +1,8 @@
 import { Image, Pressable, StyleSheet, View } from 'react-native'
 import { router } from 'expo-router'
 import { Typography } from '../Text'
+import { AlbumArt } from '../Card'
 import { useAudioController, usePlayingNow } from '@/hooks'
-import { COLORS } from '@/constants'
 
 export function MusicControllerBar() {
     const { playingNow, isPlaying, setIsPlaying } = usePlayingNow()
@@ -23,6 +23,7 @@ export function MusicControllerBar() {
             style={styles.container}
             onPress={() => router.push('/modal')}
         >
+            <AlbumArt uri={album} />
             <Image
                 source={{ uri: album }}
                 style={styles.album}
@@ -57,12 +58,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: 24,
         justifyContent: 'space-between',
-    },
-    album: {
-        width: 48,
-        height: 48,
-        borderRadius: 8,
-        backgroundColor: COLORS.text5,
     },
     info: {
         flex: 1,
