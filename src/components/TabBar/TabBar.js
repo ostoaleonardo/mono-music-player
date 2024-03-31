@@ -2,13 +2,7 @@ import { StyleSheet, View } from 'react-native'
 import { router, usePathname } from 'expo-router'
 import { MusicControllerBar } from './MusicControllerBar'
 import { TabBarItem } from './TabBarItem'
-import { COLORS } from '@/constants'
-
-const TABS = [
-    { title: 'Home', path: '/' },
-    { title: 'Tracks', path: '/tracks' },
-    { title: 'Albums', path: '/albums' },
-]
+import { COLORS, TABS } from '@/constants'
 
 export function TabBar() {
     const pathname = usePathname()
@@ -20,9 +14,10 @@ export function TabBar() {
                 {TABS.map((tab, index) => (
                     <TabBarItem
                         key={index}
+                        icon={tab.icon}
                         title={tab.title}
-                        onPress={() => router.push(tab.path)}
                         isActive={pathname === tab.path}
+                        onPress={() => router.push(tab.path)}
                     />
                 ))}
             </View>
@@ -39,7 +34,7 @@ const styles = StyleSheet.create({
         height: 80,
         flexDirection: 'row',
         alignItems: 'center',
-        borderWidth: 1,
+        borderTopWidth: 1,
         borderColor: COLORS.text5,
         justifyContent: 'space-between',
     },
